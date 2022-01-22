@@ -12,10 +12,10 @@ class Directory extends Component {
     }
 
     onCampsiteSelect(campsite) {
-        this.setState({selectedCampsite: campsite});
+        this.setState({ selectedCampsite: campsite });
     }
 
-   
+
 
     render() {
         const directory = this.props.campsites.map(campsite => {
@@ -36,7 +36,7 @@ class Directory extends Component {
                 <div className="row">
                     {directory}
                 </div>
-               <CampsiteInfo campsite={this.state.selectedCampsite}/>
+                <CampsiteInfo campsite={this.state.selectedCampsite} />
             </div>
         );
     }
