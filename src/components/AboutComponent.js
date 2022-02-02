@@ -16,7 +16,7 @@ function RenderPartner({ partner }) {
                 </Media>
             </React.Fragment>
         );
-    }; <div />
+    }; return <div />
 };
 
 function About(props) {
