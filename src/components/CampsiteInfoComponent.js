@@ -35,8 +35,8 @@ class CommentForm extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log("Current state is: " + JSON.stringify(values));
-    alert("Current state is: " + JSON.stringify(values));
+    this.toggleModal();
+    this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
   }
 
   render() {
@@ -83,8 +83,8 @@ class CommentForm extends React.Component {
                 />
               </div>
               <div className="form-group">
-                <Label htmlFor="comment">Comment</Label>
-                <Control.textarea model=".comment" id="comment" name="comment"
+                <Label htmlFor="text">Comment</Label>
+                <Control.textarea model=".text" id="text" name="text"
                   rows="6"
                   className="form-control"
                 />
@@ -118,7 +118,7 @@ function RenderCampsite({ campsite }) {
   );
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, campsiteId }) {
   if (comments) {
     return (
       <div className="col-md-5 m-1">
@@ -136,7 +136,7 @@ function RenderComments({ comments }) {
             </p>
           </div>
         ))}
-        <CommentForm />
+        <CommentForm campsiteId={campsiteId} addComment={addComment} />
       </div>
     );
   }
@@ -160,7 +160,11 @@ function CampsiteInfo(props) {
         </div>
         <div className="row">
           <RenderCampsite campsite={props.campsite} />
-          <RenderComments comments={props.comments} />
+          <RenderComments
+            comments={props.comments}
+            addComment={props.addComment}
+            campsiteId={props.campsite.id}
+          />
         </div>
       </div>
     );
